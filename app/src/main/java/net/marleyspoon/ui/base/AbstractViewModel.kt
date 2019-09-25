@@ -50,11 +50,19 @@ abstract class AbstractViewModel : ViewModel() {
         return recipeDetailsLiveData
     }
 
-    fun setCurrentActivity(activity: FragmentActivity?) {
+    open fun setRecipes(recipeDetails: List<Recipe>?) {
+        recipesLiveData.value = recipeDetails
+    }
+
+    open fun setRecipeDetails(recipeDetails: RecipeDetails?) {
+        recipeDetailsLiveData.value = recipeDetails
+    }
+
+    open fun setCurrentActivity(activity: FragmentActivity?) {
         this.activity = activity
     }
 
-    fun getCurrentActivity(): LifecycleOwner? {
+    open fun getCurrentActivity(): LifecycleOwner? {
         return this.activity
     }
 }

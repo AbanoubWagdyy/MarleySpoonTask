@@ -19,7 +19,7 @@ class ListContentViewModel(private val mRepositorySource: RepositorySource?) :
             if (it.exception != null) {
                 setError(it.exception)
             } else {
-                getRecipesLiveData().value = it.items
+                setRecipes(it.items)
             }
         })
     }

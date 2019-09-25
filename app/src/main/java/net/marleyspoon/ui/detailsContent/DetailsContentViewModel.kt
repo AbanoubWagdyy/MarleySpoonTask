@@ -2,6 +2,7 @@ package net.marleyspoon.ui.detailsContent
 
 import androidx.lifecycle.Observer
 import net.marleyspoon.data.RepositorySource
+import net.marleyspoon.data.model.RecipeDetails
 import net.marleyspoon.ui.base.AbstractViewModel
 
 class DetailsContentViewModel(val mRepositorySource: RepositorySource) : AbstractViewModel() {
@@ -18,7 +19,7 @@ class DetailsContentViewModel(val mRepositorySource: RepositorySource) : Abstrac
                 if (it.exception != null) {
                     setError(it.exception)
                 } else {
-                    getRecipeDetailsLiveData().value = it.recipeDetails
+                    setRecipeDetails(it.recipeDetails)
                 }
             })
     }
