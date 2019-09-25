@@ -3,14 +3,19 @@ package net.marleyspoon.ui.base
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.annotation.CallSuper
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.LifecycleOwner
+import net.marleyspoon.data.model.Recipe
+import net.marleyspoon.data.model.RecipeDetails
 
-/**
- */
 abstract class AbstractViewModel : ViewModel() {
 
-    val isDataLoading = MutableLiveData<Boolean>()
+    private val isDataLoading = MutableLiveData<Boolean>()
+    private val recipesLiveData = MutableLiveData<List<Recipe>>()
+    private val recipeDetailsLiveData = MutableLiveData<RecipeDetails>()
+    private val exception = MutableLiveData<Throwable>()
 
-    val exception = MutableLiveData<Throwable>()
+    private var activity: FragmentActivity? = null
 
     @CallSuper
     override fun onCleared() {
@@ -29,4 +34,27 @@ abstract class AbstractViewModel : ViewModel() {
         exception.value = t
     }
 
+    open fun getDataLoadingObserver(): MutableLiveData<Boolean> {
+        return isDataLoading
+    }
+
+    open fun getExceptionObserver(): MutableLiveData<Throwable> {
+        return exception
+    }
+
+    open fun getRecipesLiveData(): MutableLiveData<List<Recipe>> {
+        return recipesLiveData
+    }
+
+    open fun getRecipeDetailsLiveData(): MutableLiveData<RecipeDetails> {
+        return recipeDetailsLiveData
+    }
+
+    fun setCurrentActivity(activity: FragmentActivity?) {
+        this.activity = activity
+    }
+
+    fun getCurrentActivity(): LifecycleOwner? {
+        return this.activity
+    }
 }

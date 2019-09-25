@@ -11,7 +11,7 @@ class ListContentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list_content)
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.frame,ListContentFragment.newInstance())
+            .add(R.id.frame, ListContentFragment.newInstance())
             .commitAllowingStateLoss()
     }
 }

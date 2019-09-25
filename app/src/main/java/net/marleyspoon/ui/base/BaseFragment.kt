@@ -1,3 +1,10 @@
 package net.marleyspoon.ui.base
 
-open class BaseFragment : ViewLifecycleFragment()
+import android.os.Bundle
+import android.view.View
+
+open class BaseFragment : ViewLifecycleFragment() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+}
